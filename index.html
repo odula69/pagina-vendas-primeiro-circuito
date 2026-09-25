@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Elétrica Residencial: Primeiro Circuito — curso online em vídeo para quem quer começar na elétrica residencial."
+    />
+    <meta name="theme-color" content="#101312" />
+    <title>Elétrica Residencial: Primeiro Circuito</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23101312'/%3E%3Cpath d='M36.9 6 16.8 36.1h13.8L27.1 58 48 26.7H34.3L36.9 6Z' fill='%23F2B441'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        --ink: #111513;
+        --ink-soft: #1b211e;
+        --paper: #f4f1e9;
+        --paper-muted: #e7e2d8;
+        --line: rgba(17, 21, 19, 0.16);
+        --white-line: rgba(255, 255, 255, 0.13);
+        --muted: #69726c;
+        --copper: #e3a42f;
+        --copper-bright: #ffd06a;
+        --green: #8fb66b;
+        --shadow: 0 18px 52px rgba(8, 11, 10, 0.14);
+        --radius-lg: 30px;
+        --radius-md: 18px;
+        --content: min(1160px, calc(100% - 40px));
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+        overflow-x: hidden;
+      }
+
+      a { color: inherit; }
+      button, a { -webkit-tap-highlight-color: transparent; }
+      .shell { width: var(--content); margin: 0 auto; }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        margin: 0;
+        color: var(--copper-bright);
+        font-size: .76rem;
+        font-weight: 800;
+        letter-spacing: .12em;
+        line-height: 1.3;
+        text-transform: uppercase;
+      }
+      .eyebrow::before {
+        content: "";
+        width: .55rem;
+        height: .55rem;
+        background: var(--copper);
+        border-radius: 999px;
+        box-shadow: 0 0 0 5px rgba(227, 164, 47, .12);
+      }
+      .eyebrow.dark { color: #806021; }
+      .eyebrow.dark::before { background: #c9911e; }
+
+      .site-header {
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: #fffdf7;
+      }
+      .header-inner {
+        min-height: 86px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+        border-bottom: 1px solid var(--white-line);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: .72rem;
+        text-decoration: none;
+        font-weight: 800;
+        letter-spacing: -.035em;
+        white-space: nowrap;
+      }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        color: var(--ink);
+        background: var(--copper);
+        border-radius: 10px;
+      }
+      .brand-mark svg { width: 19px; height: 19px; }
+      .header-nav { display: flex; align-items: center; gap: 1.55rem; }
+      .header-nav > a:not(.header-cta) {
+        color: rgba(255, 253, 247, .82);
+        font-size: .88rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .header-nav > a:not(.header-cta):hover { color: #fffdf7; }
+      .header-cta {
+        padding: .68rem .95rem;
+        color: var(--ink);
+        background: var(--copper);
+        border-radius: 999px;
+        font-size: .88rem;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform .2s ease, background .2s ease;
+      }
+      .header-cta:hover { background: var(--copper-bright); transform: translateY(-1px); }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        padding: 138px 0 75px;
+        overflow: hidden;
+        color: #fffdf7;
+        background: var(--ink);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        background:
+          radial-gradient(circle at 88% 10%, rgba(227, 164, 47, .27), transparent 24%),
+          radial-gradient(circle at 17% 78%, rgba(143, 182, 107, .18), transparent 28%),
+          linear-gradient(124deg, #111513 5%, #18201c 51%, #101312 100%);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        opacity: .26;
+        background-image:
+          linear-gradient(90deg, transparent 0 15%, rgba(255,255,255,.12) 15.1% 15.25%, transparent 15.3% 100%),
+          linear-gradient(0deg, transparent 0 28%, rgba(227,164,47,.32) 28.1% 28.3%, transparent 28.4% 100%);
+        background-size: 340px 340px, 480px 480px;
+        mask-image: linear-gradient(100deg, #000 0%, rgba(0,0,0,.55) 55%, transparent 100%);
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.06fr) minmax(360px, .94fr);
+        align-items: center;
+        gap: clamp(2.5rem, 6vw, 6.5rem);
+      }
+      .hero h1 {
+        max-width: 720px;
+        margin: .92rem 0 1.1rem;
+        font-size: clamp(2.85rem, 6vw, 5.7rem);
+        font-weight: 850;
+        letter-spacing: -.068em;
+        line-height: .94;
+      }
+      .hero h1 span { color: var(--copper-bright); }
+      .hero-lede {
+        max-width: 590px;
+        margin: 0;
+        color: rgba(255, 253, 247, .78);
+        font-size: clamp(1.04rem, 1.7vw, 1.23rem);
+        line-height: 1.63;
+      }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.75rem; }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .55rem;
+        min-height: 52px;
+        padding: .86rem 1.16rem;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        font-size: .97rem;
+        font-weight: 800;
+        line-height: 1.15;
+        text-align: center;
+        text-decoration: none;
+        transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      }
+      .button:hover { transform: translateY(-2px); }
+      .button.primary {
+        color: var(--ink);
+        background: var(--copper);
+        box-shadow: 0 10px 26px rgba(227, 164, 47, .22);
+      }
+      .button.primary:hover { background: var(--copper-bright); }
+      .button.ghost {
+        color: #fffdf7;
+        border-color: rgba(255, 255, 255, .28);
+        background: rgba(255, 255, 255, .05);
+      }
+      .button.ghost:hover { background: rgba(255, 255, 255, .12); }
+      .arrow { width: 17px; height: 17px; }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 2.8rem;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, .14);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, .13);
+      }
+      .hero-stat {
+        min-height: 88px;
+        padding: .88rem .88rem .78rem;
+        background: rgba(10, 13, 12, .48);
+      }
+      .hero-stat strong { display: block; font-size: 1.08rem; letter-spacing: -.035em; }
+      .hero-stat span { display: block; margin-top: .1rem; color: rgba(255,255,255,.58); font-size: .72rem; font-weight: 650; line-height: 1.25; }
+
+      .panel-card {
+        position: relative;
+        transform: rotate(2deg);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, .22);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 26px 70px rgba(0, 0, 0, .32);
+        background: #27302a;
+      }
+      .panel-card::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(135deg, rgba(255,255,255,.16), transparent 29%, transparent 70%, rgba(227,164,47,.18));
+      }
+      .panel-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+      .panel-caption {
+        position: absolute;
+        z-index: 2;
+        right: 1.05rem;
+        bottom: 1.05rem;
+        left: 1.05rem;
+        display: flex;
+        align-items: center;
+        gap: .65rem;
+        padding: .75rem .85rem;
+        border: 1px solid rgba(255, 255, 255, .19);
+        border-radius: 13px;
+        color: #fffdf7;
+        background: rgba(11, 15, 13, .73);
+        backdrop-filter: blur(10px);
+        font-size: .75rem;
+        font-weight: 650;
+        line-height: 1.35;
+      }
+      .panel-caption .mini-bolt {
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        color: var(--ink);
+        border-radius: 9px;
+        background: var(--copper);
+      }
+      .panel-caption svg { width: 14px; height: 14px; }
+      .hero-price-tag {
+        position: absolute;
+        z-index: 3;
+        top: 1.25rem;
+        right: 1.25rem;
+        padding: .68rem .84rem;
+        color: var(--ink);
+        border-radius: 13px;
+        background: var(--copper-bright);
+        box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      }
+      .hero-price-tag span { display: block; font-size: .63rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+      .hero-price-tag strong { display: block; margin-top: .08rem; font-size: 1.22rem; letter-spacing: -.05em; line-height: 1; }
+
+      section { padding: 104px 0; }
+      .section-intro { max-width: 720px; }
+      .section-title {
+        margin: .6rem 0 0;
+        font-size: clamp(2rem, 4vw, 3.55rem);
+        font-weight: 850;
+        letter-spacing: -.06em;
+        line-height: 1.02;
+      }
+      .section-copy { max-width: 640px; margin: 1.15rem 0 0; color: #555e58; font-size: 1.06rem; }
+
+      .problem { background: #eae5da; }
+      .problem-grid { display: grid; grid-template-columns: .83fr 1.17fr; align-items: start; gap: 5.5rem; }
+      .problem-lines { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+      .problem-lines li { position: relative; padding: 1.15rem 2.1rem 1.15rem 0; border-bottom: 1px solid var(--line); font-size: clamp(1rem, 1.5vw, 1.16rem); font-weight: 700; letter-spacing: -.025em; }
+      .problem-lines li::after { content: "↘"; position: absolute; right: .15rem; color: #b08327; font-size: 1.25rem; }
+      .problem-note { margin: 1.55rem 0 0; color: #616860; font-size: .94rem; }
+
+      .path { position: relative; overflow: hidden; color: #fffdf7; background: var(--ink-soft); }
+      .path::before { content: ""; position: absolute; inset: auto -10% -45% auto; width: 670px; height: 670px; border: 1px solid rgba(227,164,47,.2); border-radius: 50%; box-shadow: 0 0 0 70px rgba(227,164,47,.045), 0 0 0 140px rgba(227,164,47,.035); }
+      .path .section-title { max-width: 690px; }
+      .path .section-copy { color: rgba(255,253,247,.67); }
+      .path-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+      .path-card { min-height: 235px; padding: 1.45rem; border: 1px solid rgba(255,255,255,.12); border-radius: 19px; background: rgba(255,255,255,.045); }
+      .path-number { display: grid; place-items: center; width: 37px; height: 37px; color: var(--ink); border-radius: 50%; background: var(--copper); font-size: .81rem; font-weight: 900; }
+      .path-card h3 { margin: 1.55rem 0 .5rem; font-size: 1.22rem; letter-spacing: -.04em; }
+      .path-card p { margin: 0; color: rgba(255,253,247,.68); font-size: .93rem; }
+
+      .included { background: var(--paper); }
+      .included-grid { display: grid; grid-template-columns: .94fr 1.06fr; gap: 4rem; align-items: center; }
+      .included-visual { position: relative; min-height: 370px; overflow: hidden; border-radius: var(--radius-lg); background: #d6cfc2; }
+      .included-visual::before { content: ""; position: absolute; top: -115px; left: -85px; width: 390px; height: 390px; border: 1px solid rgba(17,21,19,.19); border-radius: 50%; box-shadow: 0 0 0 42px rgba(17,21,19,.04), 0 0 0 84px rgba(17,21,19,.035); }
+      .included-visual::after { content: ""; position: absolute; right: -40px; bottom: 37px; width: 290px; height: 3px; background: #d0921c; box-shadow: 0 -26px 0 #232a25, 0 -52px 0 #d0921c, 0 -78px 0 #232a25, 0 -104px 0 #d0921c; transform: rotate(-19deg); opacity: .82; }
+      .included-plate { position: absolute; z-index: 1; right: 1.8rem; bottom: 1.8rem; left: 1.8rem; padding: 1.25rem; border: 1px solid rgba(17,21,19,.18); border-radius: 19px; background: rgba(248,246,240,.79); box-shadow: 0 13px 35px rgba(32,34,28,.13); backdrop-filter: blur(8px); }
+      .included-plate small { display: block; color: #6a726b; font-size: .73rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      .included-plate strong { display: block; max-width: 360px; margin-top: .35rem; font-size: clamp(1.45rem, 3vw, 2.13rem); letter-spacing: -.06em; line-height: 1; }
+      .include-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+      .include-list li { display: flex; align-items: flex-start; gap: .68rem; padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.34); font-weight: 720; line-height: 1.3; }
+      .check { display: grid; flex: none; place-items: center; width: 20px; height: 20px; margin-top: .02rem; color: #fff; border-radius: 50%; background: #7e9d60; }
+      .check svg { width: 12px; height: 12px; }
+
+      .modules { border-top: 1px solid rgba(17,21,19,.1); background: #fbfaf6; }
+      .modules-top { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+      .modules-note { max-width: 350px; margin: 0 0 .45rem; color: #676d67; font-size: .9rem; }
+      .module-list { display: grid; grid-template-columns: repeat(7, 1fr); gap: .62rem; margin-top: 3rem; }
+      .module-item { min-height: 175px; padding: 1rem; border: 1px solid var(--line); border-radius: 15px; background: #fffefa; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+      .module-item:hover { transform: translateY(-4px); border-color: rgba(227,164,47,.8); box-shadow: 0 14px 26px rgba(18,21,18,.07); }
+      .module-index { display: block; color: #b47d17; font-size: .73rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+      .module-item strong { display: block; margin-top: 2.45rem; font-size: 1rem; letter-spacing: -.035em; }
+      .module-item span { display: block; margin-top: .42rem; color: #737a73; font-size: .72rem; font-weight: 650; line-height: 1.32; }
+
+      .audience { background: #e8e3d7; }
+      .audience-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 5rem; }
+      .audience-list { display: grid; gap: .72rem; margin: 0; padding: 0; list-style: none; }
+      .audience-list li { display: flex; gap: .82rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--line); color: #313932; font-size: 1.04rem; font-weight: 650; }
+      .audience-list li:first-child { border-top: 1px solid var(--line); }
+      .bullet-bolt { flex: none; width: 19px; height: 19px; margin-top: .2rem; color: #b67b13; }
+
+      .certificate { color: #fffdf7; background: #131815; }
+      .certificate-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 4.5rem; }
+      .certificate .section-copy { color: rgba(255,253,247,.7); }
+      .certificate-card { position: relative; padding: 2.2rem; overflow: hidden; color: var(--ink); border: 1px solid rgba(255,255,255,.16); border-radius: 22px; background: #f6f1e6; box-shadow: 0 24px 60px rgba(0,0,0,.26); transform: rotate(-2deg); }
+      .certificate-card::after { content: ""; position: absolute; right: -72px; bottom: -72px; width: 210px; height: 210px; border: 28px solid rgba(227,164,47,.35); border-radius: 50%; }
+      .certificate-card small { position: relative; z-index: 1; display: block; color: #9b7426; font-size: .7rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+      .certificate-card h3 { position: relative; z-index: 1; max-width: 260px; margin: .9rem 0 2.4rem; font-size: 1.85rem; letter-spacing: -.065em; line-height: .98; }
+      .certificate-line { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .8rem; border-top: 1px solid rgba(17,21,19,.18); color: #61675f; font-size: .75rem; font-weight: 750; }
+      .seal { display: grid; place-items: center; width: 40px; height: 40px; color: #fff; border-radius: 50%; background: #b78520; }
+      .seal svg { width: 20px; height: 20px; }
+
+      .offer { padding: 96px 0; background: var(--paper); }
+      .offer-card { position: relative; overflow: hidden; padding: clamp(1.7rem, 5vw, 4.1rem); color: #fffdf7; border-radius: var(--radius-lg); background: #1a221d; box-shadow: var(--shadow); }
+      .offer-card::before { content: ""; position: absolute; top: -240px; right: -170px; width: 560px; height: 560px; border: 1px solid rgba(227,164,47,.34); border-radius: 50%; box-shadow: 0 0 0 42px rgba(227,164,47,.06), 0 0 0 84px rgba(227,164,47,.035); }
+      .offer-card::after { content: ""; position: absolute; bottom: -10px; left: -40px; width: 250px; height: 4px; background: var(--copper); box-shadow: 0 -29px 0 rgba(255,255,255,.1), 0 -58px 0 var(--copper); transform: rotate(22deg); opacity: .9; }
+      .offer-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: end; }
+      .offer h2 { max-width: 640px; margin: .7rem 0 0; font-size: clamp(2.15rem, 5vw, 4.3rem); font-weight: 850; letter-spacing: -.065em; line-height: .98; }
+      .offer-meta { display: flex; flex-wrap: wrap; gap: .55rem .95rem; margin-top: 1.35rem; color: rgba(255,253,247,.7); font-size: .88rem; font-weight: 650; }
+      .offer-meta span { display: inline-flex; align-items: center; gap: .45rem; }
+      .offer-meta span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--copper); }
+      .buy-box { padding: 1.25rem; border: 1px solid rgba(255,255,255,.14); border-radius: 18px; background: rgba(255,255,255,.07); }
+      .buy-box span { display: block; color: rgba(255,253,247,.6); font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+      .buy-box strong { display: block; margin: .22rem 0 1rem; color: var(--copper-bright); font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -.07em; line-height: 1; }
+      .buy-box .button { width: 100%; }
+
+      .faq { background: #fbfaf6; }
+      .faq-header { display: grid; grid-template-columns: .82fr 1.18fr; gap: 3rem; }
+      .faq-list { margin-top: 2.4rem; border-top: 1px solid var(--line); }
+      details { border-bottom: 1px solid var(--line); }
+      summary { position: relative; cursor: pointer; padding: 1.12rem 2.35rem 1.12rem 0; font-size: 1.02rem; font-weight: 780; letter-spacing: -.02em; list-style: none; }
+      summary::-webkit-details-marker { display: none; }
+      summary::after { content: "+"; position: absolute; top: 50%; right: .1rem; color: #b47d17; font-size: 1.5rem; font-weight: 400; line-height: 1; transform: translateY(-50%); }
+      details[open] summary::after { content: "−"; }
+      details p { max-width: 760px; margin: -.2rem 0 1.2rem; color: #606860; }
+
+      footer { padding: 32px 0; color: rgba(255,253,247,.7); background: #0f1311; }
+      .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+      .footer-inner .brand { color: #fffdf7; }
+      .footer-text { margin: 0; font-size: .78rem; }
+      .footer-checkout { color: var(--copper-bright); font-size: .8rem; font-weight: 800; text-decoration: none; }
+
+      .mobile-buy { display: none; }
+
+      @media (max-width: 1000px) {
+        .hero-grid, .problem-grid, .included-grid, .audience-grid, .certificate-grid, .offer-content, .faq-header { grid-template-columns: 1fr; }
+        .hero-grid { gap: 2.6rem; }
+        .panel-card { width: min(520px, 90%); margin: 0 auto; transform: rotate(1.2deg); }
+        .panel-card img { aspect-ratio: 16 / 10; }
+        .problem-grid, .audience-grid, .certificate-grid { gap: 2.25rem; }
+        .included-grid { gap: 2.6rem; }
+        .offer-content { gap: 2rem; }
+        .module-list { grid-template-columns: repeat(4, 1fr); }
+      }
+
+      @media (max-width: 720px) {
+        :root { --content: min(100% - 30px, 1160px); }
+        .header-inner { min-height: 72px; }
+        .header-nav > a:not(.header-cta) { display: none; }
+        .header-cta { padding: .58rem .82rem; font-size: .8rem; }
+        .brand { gap: .55rem; font-size: .85rem; }
+        .brand-mark { width: 29px; height: 29px; border-radius: 9px; }
+        .hero { padding-top: 116px; padding-bottom: 58px; }
+        .hero h1 { font-size: clamp(2.7rem, 13vw, 4.2rem); }
+        .hero-stats { grid-template-columns: repeat(2, 1fr); }
+        .hero-stat { min-height: 75px; }
+        .panel-card { width: 100%; }
+        .panel-card img { aspect-ratio: 4 / 3; }
+        section { padding: 73px 0; }
+        .section-title { font-size: clamp(2rem, 10vw, 3rem); }
+        .path-grid, .include-list { grid-template-columns: 1fr; }
+        .path-card { min-height: auto; }
+        .included-visual { min-height: 305px; }
+        .modules-top { align-items: flex-start; flex-direction: column; gap: 1.1rem; }
+        .module-list { grid-template-columns: repeat(2, 1fr); }
+        .module-item { min-height: 132px; }
+        .module-item strong { margin-top: 1.25rem; }
+        .certificate-card { max-width: 430px; margin: 0 auto; }
+        .footer-inner { align-items: flex-start; flex-direction: column; }
+        .mobile-buy { position: fixed; z-index: 10; right: 15px; bottom: 15px; left: 15px; display: flex; box-shadow: 0 13px 32px rgba(0,0,0,.3); }
+        footer { padding-bottom: 94px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="#inicio" aria-label="Ir para o início">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M13.9 2 5.4 14.1h5.8l-1.1 7.9 8.5-12.1h-5.8L13.9 2Z" fill="currentColor"/></svg>
+          </span>
+          <span>Primeiro Circuito</span>
+        </a>
+        <nav class="header-nav" aria-label="Navegação principal">
+          <a href="#curso">O curso</a>
+          <a href="#modulos">Módulos</a>
+          <a href="#faq">Dúvidas</a>
+          <a class="header-cta" href="https://pay.cakto.com.br/z9gc9s3_1120589" target="_blank" rel="noopener noreferrer">Entrar no curso</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="shell hero-grid">
+          <div>
+            <p class="eyebrow">Curso online para iniciantes</p>
+            <h1>Elétrica Residencial:<br /><span>Primeiro Circuito</span></h1>
+            <p class="hero-lede">Uma sequência clara de aulas em vídeo para quem quer começar na elétrica residencial, entender a base e avançar passo a passo.</p>
+            <div class="hero-actions">
+              <a class="button primary" href="https://pay.cakto.com.br/z9gc9s3_1120589" target="_blank" rel="noopener noreferrer">
+                Quero entrar no curso
+                <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="button ghost" href="#curso">Conhecer o curso</a>
+            </div>
+            <div class="hero-stats" aria-label="Informações principais do curso">
+              <div class="hero-stat"><strong>7 módulos</strong><span>Estrutura organizada</span></div>
+              <div class="hero-stat"><strong>33 aulas</strong><span>Em vídeo</span></div>
+              <div class="hero-stat"><strong>6h27min</strong><span>De conteúdo</span></div>
+              <div class="hero-stat"><strong>Certificado</strong><span>De conclusão</span></div>
+            </div>
+          </div>
+
+          <figure class="panel-card">
+            <img src="assets/hero-electrical-panel.png" alt="Pessoa instalando disjuntores em um painel elétrico residencial" />
+            <div class="hero-price-tag"><span>Investimento</span><strong>R$ 37,80</strong></div>
+            <figcaption class="panel-caption">
+              <span class="mini-bolt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13.9 2 5.4 14.1h5.8l-1.1 7.9 8.5-12.1h-5.8L13.9 2Z" fill="currentColor"/></svg></span>
+              Instalação real em painel elétrico residencial.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="problem" id="curso">
+        <div class="shell problem-grid">
+          <div class="section-intro">
+            <p class="eyebrow dark">Para começar sem se perder</p>
+            <h2 class="section-title">Aprender elétrica não precisa começar no meio do caminho.</h2>
+          </div>
+          <div>
+            <ul class="problem-lines">
+              <li>Você quer aprender, mas não sabe qual deve ser o primeiro assunto.</li>
+              <li>Na internet, encontra muita explicação solta e sem uma sequência clara.</li>
+              <li>Os conceitos básicos parecem difíceis quando ninguém mostra por onde começar.</li>
+              <li>Você prefere acompanhar aulas em vídeo e ver a aplicação apresentada de forma direta.</li>
+            </ul>
+            <p class="problem-note">O <strong>Primeiro Circuito</strong> reúne o conteúdo em módulos para que você avance com uma ordem mais fácil de acompanhar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="path">
+        <div class="shell">
+          <p class="eyebrow">Um caminho organizado</p>
+          <h2 class="section-title">Da base aos próximos passos, com uma sequência que faz sentido.</h2>
+          <p class="section-copy">O curso foi pensado para apresentar a elétrica residencial de forma progressiva: você começa pelos fundamentos e acompanha os módulos em aulas em vídeo.</p>
+          <div class="path-grid">
+            <article class="path-card">
+              <span class="path-number">01</span>
+              <h3>Comece pela base</h3>
+              <p>Um ponto de partida para quem ainda não tem familiaridade com elétrica residencial.</p>
+            </article>
+            <article class="path-card">
+              <span class="path-number">02</span>
+              <h3>Acompanhe em vídeo</h3>
+              <p>As 33 aulas foram estruturadas em formato de videoaulas para acompanhar o conteúdo de forma visual.</p>
+            </article>
+            <article class="path-card">
+              <span class="path-number">03</span>
+              <h3>Avance por módulos</h3>
+              <p>Uma organização em 7 módulos para você seguir o treinamento por etapas, em vez de juntar informações soltas.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="included">
+        <div class="shell included-grid">
+          <div class="included-visual" aria-hidden="true">
+            <div class="included-plate">
+              <small>O que você recebe</small>
+              <strong>Conteúdo em vídeo, organizado em uma única formação.</strong>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow dark">Tudo reunido no curso</p>
+            <h2 class="section-title">Você sabe exatamente o que está levando.</h2>
+            <p class="section-copy">O treinamento concentra as aulas em uma estrutura simples de acompanhar, para você começar na elétrica residencial com conteúdo organizado.</p>
+            <ul class="include-list">
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.2 4.2L19.5 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Videoaulas</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.2 4.2L19.5 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>7 módulos</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.2 4.2L19.5 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>33 aulas</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.2 4.2L19.5 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Aproximadamente 6h27min de conteúdo</li>
+              <li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.2 4.2L19.5 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Certificado de conclusão</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="modules" id="modulos">
+        <div class="shell">
+          <div class="modules-top">
+            <div class="section-intro">
+              <p class="eyebrow dark">Estrutura do treinamento</p>
+              <h2 class="section-title">7 módulos para acompanhar em sequência.</h2>
+            </div>
+            <p class="modules-note">Uma sequência organizada para você construir sua base e avançar com mais clareza na elétrica residencial.</p>
+          </div>
+          <div class="module-list" aria-label="Módulos do curso">
+            <article class="module-item"><span class="module-index">Módulo 01</span><strong>Fundamentos da Eletricidade</strong></article>
+            <article class="module-item"><span class="module-index">Módulo 02</span><strong>Condutores e Conexões</strong></article>
+            <article class="module-item"><span class="module-index">Módulo 03</span><strong>Segurança e Dispositivos de Proteção</strong></article>
+            <article class="module-item"><span class="module-index">Módulo 04</span><strong>Ferramentas do Eletricista</strong></article>
+            <article class="module-item"><span class="module-index">Módulo 05</span><strong>Instalações Elétricas</strong></article>
+            <article class="module-item"><span class="module-index">Módulo 06</span><strong>Aterramento</strong></article>
+            <article class="module-item"><span class="module-index">Módulo 07</span><strong>Quadros de Distribuição</strong></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="audience">
+        <div class="shell audience-grid">
+          <div class="section-intro">
+            <p class="eyebrow dark">Para quem é</p>
+            <h2 class="section-title">Feito para quem quer começar com mais clareza.</h2>
+            <p class="section-copy">Não é preciso chegar sabendo tudo. A proposta é ter uma sequência de estudo para acompanhar desde o começo.</p>
+          </div>
+          <ul class="audience-list">
+            <li><svg class="bullet-bolt" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.9 2 5.4 14.1h5.8l-1.1 7.9 8.5-12.1h-5.8L13.9 2Z" fill="currentColor"/></svg>Para quem quer aprender elétrica residencial, mas ainda não sabe por onde começar.</li>
+            <li><svg class="bullet-bolt" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.9 2 5.4 14.1h5.8l-1.1 7.9 8.5-12.1h-5.8L13.9 2Z" fill="currentColor"/></svg>Para quem encontra informações soltas e quer estudar seguindo uma ordem.</li>
+            <li><svg class="bullet-bolt" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.9 2 5.4 14.1h5.8l-1.1 7.9 8.5-12.1h-5.8L13.9 2Z" fill="currentColor"/></svg>Para quem prefere aprender acompanhando videoaulas e exemplos apresentados de forma visual.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="certificate">
+        <div class="shell certificate-grid">
+          <div>
+            <p class="eyebrow">Certificado de conclusão</p>
+            <h2 class="section-title">Ao concluir o curso, você terá um certificado.</h2>
+            <p class="section-copy">O certificado de conclusão faz parte do treinamento e registra a conclusão do curso <strong>Elétrica Residencial: Primeiro Circuito</strong>.</p>
+          </div>
+          <article class="certificate-card" aria-label="Cartão que representa o certificado de conclusão">
+            <small>Certificado de conclusão</small>
+            <h3>Elétrica Residencial:<br />Primeiro Circuito</h3>
+            <div class="certificate-line"><span>Curso online em vídeo</span><span class="seal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.2 4.2L19.5 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="offer">
+        <div class="shell">
+          <div class="offer-card">
+            <div class="offer-content">
+              <div>
+                <p class="eyebrow">Comece pela base</p>
+                <h2>Seu primeiro passo na elétrica residencial pode começar agora.</h2>
+                <div class="offer-meta" aria-label="Informações do curso">
+                  <span>Elétrica Residencial: Primeiro Circuito</span>
+                  <span>7 módulos</span>
+                  <span>33 aulas</span>
+                  <span>6h27min de conteúdo</span>
+                  <span>Certificado</span>
+                </div>
+              </div>
+              <div class="buy-box">
+                <span>Investimento único</span>
+                <strong>R$ 37,80</strong>
+                <a class="button primary" href="https://pay.cakto.com.br/z9gc9s3_1120589" target="_blank" rel="noopener noreferrer">Entrar no curso agora <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq" id="faq">
+        <div class="shell">
+          <div class="faq-header">
+            <div>
+              <p class="eyebrow dark">Perguntas frequentes</p>
+              <h2 class="section-title">O que você precisa saber antes de entrar.</h2>
+            </div>
+            <p class="section-copy">Aqui estão as informações principais sobre o formato e a estrutura do curso.</p>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>Preciso saber elétrica para começar?</summary>
+              <p>Não. O curso foi pensado principalmente para pessoas que querem começar na elétrica residencial partindo do zero.</p>
+            </details>
+            <details>
+              <summary>O curso é em vídeo?</summary>
+              <p>Sim. O conteúdo é apresentado em aulas em vídeo.</p>
+            </details>
+            <details>
+              <summary>Quantas aulas existem?</summary>
+              <p>O curso possui 33 aulas.</p>
+            </details>
+            <details>
+              <summary>Quantos módulos existem?</summary>
+              <p>O curso está organizado em 7 módulos.</p>
+            </details>
+            <details>
+              <summary>Quanto tempo de conteúdo o curso possui?</summary>
+              <p>O curso possui aproximadamente 6 horas e 27 minutos de conteúdo.</p>
+            </details>
+            <details>
+              <summary>O curso tem certificado?</summary>
+              <p>Sim. O curso inclui certificado de conclusão.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell footer-inner">
+        <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13.9 2 5.4 14.1h5.8l-1.1 7.9 8.5-12.1h-5.8L13.9 2Z" fill="currentColor"/></svg></span><span>Primeiro Circuito</span></a>
+        <p class="footer-text">Elétrica Residencial: Primeiro Circuito</p>
+        <a class="footer-checkout" href="https://pay.cakto.com.br/z9gc9s3_1120589" target="_blank" rel="noopener noreferrer">Ir para o checkout</a>
+      </div>
+    </footer>
+
+    <a class="mobile-buy button primary" href="https://pay.cakto.com.br/z9gc9s3_1120589" target="_blank" rel="noopener noreferrer">Entrar no curso — R$ 37,80</a>
+  </body>
+</html>
